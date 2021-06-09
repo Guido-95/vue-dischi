@@ -38,7 +38,7 @@ export default {
                 (risultato)=>{
                     this.canzoni = risultato.data.response;
                     console.log(this.canzoni);
-                    // this.caricamento = true;
+                    this.caricamento = true;
                 }
                 )
             .catch()
