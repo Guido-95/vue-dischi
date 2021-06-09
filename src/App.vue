@@ -6,23 +6,9 @@
 
     <main>
       <div class="container">
-        <div class="row">
-          <div class="col-lg-2 col-md-3 col-sm-4">
+        
+       <ListaCanzoni/> 
 
-          </div>
-          <div class="col-lg-2 col-md-3 col-sm-4">
-
-          </div>
-          <div class="col-lg-2 col-md-3 col-sm-4">
-
-          </div>
-          <div class="col-lg-2 col-md-3 col-sm-4">
-
-          </div>
-          <div class="col-lg-2 col-md-3 col-sm-4">
-
-          </div>
-        </div>
       </div>
     </main>
     
@@ -31,14 +17,18 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from './components/Header.vue';
+import ListaCanzoni from './components/ListaCanzoni.vue';
+
 
 export default {
   name: 'App',
   components: {
     Header:Header,
-
-  }
+    ListaCanzoni:ListaCanzoni,
+    
+  },
+  
 }
 </script>
 
@@ -51,6 +41,11 @@ export default {
     padding: 0;
   }
 
+  body{
+    
+    background-color: #1e2d3b;
+  }
+
   header{
     display: flex;
     align-items:center;
@@ -58,27 +53,7 @@ export default {
     background-color:#2e3a46 ;
   }
 
-  main{
-    height: calc(100vh - 80px);
-    background-color:#1e2d3b;
-  }
 
-  .container{
-    height: 100%;
-    background-color: chartreuse;
-    .row{
-      padding: 100px;
-      justify-content: center;
-      
-      div {
-      height: 300px;
-      border: 1px solid black;
-      background-color: yellow;
-      }
-
-    }
-    
-  }
 
 
 </style>
