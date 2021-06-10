@@ -2,12 +2,21 @@
   <div id="app">
     <header>
       <Header/>
+      <!-- <div class="select">
+        <select name="generi" id="generi">
+          <option value="Tutti">Tutti</option>
+          <option value="Rock">Rock</option>
+          <option value="Pop">Pop</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Metal">Metal</option>
+        </select>
+      </div> -->
     </header>
 
     <main>
       <div class="container">
         
-       <ListaCanzoni/> 
+        <ListaCanzoni/> 
 
       </div>
     </main>
@@ -52,8 +61,10 @@ export default {
     height: 80px;
     background-color:#2e3a46 ;
   }
-
-
-
-
+  .select{
+    width: 100%;
+    text-align: right;
+    margin-right: 50px;
+  }
+  
 </style>

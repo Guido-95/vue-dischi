@@ -1,7 +1,16 @@
 <template>
     <div class="container" v-if='caricamento'>
         <div class="canzoni row">
-            <div class="canzone" v-for="canzone,indicatore in canzoni" :key="indicatore">
+            <div class="select">
+                <select @click='ritornaTipo' name="generi" id="generi">
+                    <option @click='ritornaTipo' value="Tutti"> Tutti </option>
+                    <option @click='ritornaTipo' value="Rock">Rock</option>
+                    <option @click='ritornaTipo' value="Pop">Pop</option>
+                    <option @click='ritornaTipo' value="Jazz">Jazz</option>
+                    <option @click='ritornaTipo' value="Metal">Metal</option>
+                </select>
+            </div>
+            <div class="canzone" v-for="canzone,indicatore in filtraCanzoni" :key="indicatore">
 
                 <Canzone :canzone="canzone"/>
               
@@ -30,8 +39,24 @@ export default {
         return{
             canzoni:[],
             caricamento : false,
+            genere: 'Tutti',
         }
     },
+     computed: {
+        filtraCanzoni: function() {
+            console.log("Filtered characters");
+           
+            if(this.genere == 'Tutti'){
+                return this.canzoni;
+            }
+            const newArray = this.canzoni.filter(
+                (element) => {
+                   return element.genre == this.genere
+                } 
+            );
+            return newArray;
+    }
+     },
     created(){
         axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then(
@@ -42,6 +67,15 @@ export default {
                 }
                 )
             .catch()
+    },
+    methods:{
+        ritornaTipo(e){
+            console.log(e.target.value);
+            this.genere = e.target.value;
+            console.log(this.filtraCanzoni);
+            return e.target.value;
+            
+        }
     }
 }
 </script>
@@ -59,6 +93,12 @@ export default {
                 background-color: #2e3a46;
             }
         }
+    }
+
+    .select{
+        position: fixed;
+        top: 25px;
+        right: 0;
     }
 
     .caricamento {
