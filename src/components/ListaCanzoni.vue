@@ -1,20 +1,15 @@
 <template>
     <div class="container" v-if='caricamento'>
         <div class="canzoni row">
-            <div class="select">
-                <select @click='ritornaTipo' name="generi" id="generi">
-                    <option @click='ritornaTipo' value="Tutti"> Tutti </option>
-                    <option @click='ritornaTipo' value="Rock">Rock</option>
-                    <option @click='ritornaTipo' value="Pop">Pop</option>
-                    <option @click='ritornaTipo' value="Jazz">Jazz</option>
-                    <option @click='ritornaTipo' value="Metal">Metal</option>
-                </select>
-            </div>
-            <div class="canzone" v-for="canzone,indicatore in filtraCanzoni" :key="indicatore">
+            <Select class="select" :arrayOggettiCanzoni = 'canzoni ' @cambiamentoSelectGenere="trovaGenere"/>
+
+            
+            <div class="canzone"  v-for="canzone,indicatore in filtraCanzoni" :key="indicatore">
 
                 <Canzone :canzone="canzone"/>
-              
+               
             </div>
+
            
         </div>
     </div>
@@ -29,20 +24,40 @@
 
 <script>
 import Canzone from './Canzone.vue'
+import Select from './Select.vue'
 import axios from 'axios'
 export default {
     name:'ListaCanzoni',
     components:{
         Canzone:Canzone,
+        Select:Select
     },
     data(){
         return{
             canzoni:[],
             caricamento : false,
             genere: 'Tutti',
+            autore:'Tutti',
+            booleanoGeneri:false,
+            booleanoAutori:false,
+
         }
     },
-     computed: {
+    methods:{
+      
+        trovaGenere(valoreSelect){
+            console.log(valoreSelect);
+            this.genere = valoreSelect;
+            return this.genere;
+        },
+        // trovaAutore(valoreSelect){
+        //     console.log(valoreSelect);
+        //     this.autore = valoreSelect;
+        //     return this.autore;
+        // }
+
+    },
+    computed: {
         filtraCanzoni: function() {
             console.log("Filtered characters");
            
@@ -55,8 +70,21 @@ export default {
                 } 
             );
             return newArray;
-    }
-     },
+        },
+        filtraAutori: function() {
+            console.log("Filtered characters");
+           
+            if(this.autore == 'Tutti'){
+                return this.canzoni;
+            }
+            const newArray = this.canzoni.filter(
+                (element) => {
+                   return element.author == this.autore
+                } 
+            );
+            return newArray;
+        }
+    },
     created(){
         axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then(
@@ -68,15 +96,7 @@ export default {
                 )
             .catch()
     },
-    methods:{
-        ritornaTipo(e){
-            console.log(e.target.value);
-            this.genere = e.target.value;
-            console.log(this.filtraCanzoni);
-            return e.target.value;
-            
-        }
-    }
+  
 }
 </script>
 
