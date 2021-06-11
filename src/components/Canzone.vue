@@ -25,7 +25,7 @@ export default {
     flex-direction: column;
     padding: 20px 8px 20px 8px;
     img{
-        height: 150px;
+        width: 150px;
     }
 
     h4{
