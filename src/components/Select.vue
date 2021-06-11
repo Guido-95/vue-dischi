@@ -2,8 +2,7 @@
    
     <div class="select">
         <select v-model = "genere" @change ="$emit('cambiamentoSelectGenere', genere)" id="generi">
-            <option disabled value = ""> scegli un genere</option>
-            <option value = "Tutti"> Genere </option>
+            <option value = ""> Scegli un Genere </option>
             <option v-for = 'genere,indicatore in arrayFiltrato' :key="indicatore" :value="genere"> {{ genere }} </option>
             
         </select>
@@ -16,9 +15,7 @@
 export default {
     data(){
         return {
-            genere:'Tutti',
-            autore:'Tutti',
-            message:'',
+            genere:'',
             arrayFiltrato:this.filtraDoppioni(),
         }
     },

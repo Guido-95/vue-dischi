@@ -1,6 +1,7 @@
 <template>
     <div class="container" v-if='caricamento'>
         <div class="canzoni row">
+            
             <Select class="select" :arrayOggettiCanzoni = 'canzoni ' @cambiamentoSelectGenere="trovaGenere"/>
 
             <Select2 class="select2" :arrayOggettiCanzoni = 'canzoni ' @cambiamentoSelectAutore="trovaAutore"/>
@@ -39,8 +40,8 @@ export default {
         return{
             canzoni:[],
             caricamento : false,
-            genere: 'Tutti',
-            autore:'Tutti',
+            genere: '',
+            autore:'',
             booleanoGeneri:false,
             booleanoAutori:false,
 
@@ -50,20 +51,20 @@ export default {
         trovaGenere(valoreSelect){
             console.log(valoreSelect);
             this.genere = valoreSelect;
-            this.autore = 'Tutti'
+            this.autore = ''
         },
         trovaAutore(valoreSelect){
             console.log(valoreSelect);
             this.autore = valoreSelect;
-            this.genere = 'Tutti'
+            this.genere = ''
         }
     },
     computed: {
       
         filtraCanzone(){
-            if(this.genere == 'Tutti' && this.autore == 'Tutti'){
+            if(this.genere == '' && this.autore == ''){
                 return this.canzoni;
-            }else if (this.autore != 'Tutti'){
+            }else if (this.autore != ''){
                 return this.canzoni.filter(
                 element => element.author == this.autore
             );
