@@ -97,8 +97,8 @@ export default {
             height: 100%;
             align-content: center;
             .canzone {
+                padding-bottom: 20px;
                 margin: 10px 25px;
-                
                 width: calc( 100%/5 - 50px);
                 background-color: #2e3a46;
             }
